@@ -1,0 +1,55 @@
+body,html {
+    background: darkcyan;
+    height: 100%;
+    width: 90%;
+    margin: 0;
+  }
+
+  body{
+      align-items: center;
+      justify-content: center;
+      display: -ms-inline-grid;
+      align-content: center;
+      align-items: center;
+  }
+
+  canvas{
+      position: absolute;
+      top: 100px;
+      left: 40%;
+      border: 1px solid white;
+  }
+
+  #tetris {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      height: 70%;
+  }
+
+  #siguiente{
+      margin-left: 350px;
+      
+  }
+
+  #tituloFigura{
+      position: relative;
+      text-align: center;
+      width: 100px;
+      height: 20px;
+      top: 65px;
+      left: 965px;
+      border: 1px solid white;
+      color: white;
+  }
+
+  #puntuacion, #linea, #nivel, #tituloPuntuacion, #tituloNivel, #tituloLinea{
+      text-align: center;
+      color: white;
+      height: 30px;
+      position: relative;
+      top: 250px;
+      left: 978px;
+      border: 1px solid white;
+      width: 80px;
+  }

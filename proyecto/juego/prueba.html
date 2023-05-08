@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Texto que parpadea</title>
+	<script>
+		function parpadear() {
+			var texto = document.getElementById('texto');
+			if (texto.style.visibility === 'visible') {
+				texto.style.visibility = 'hidden';
+			} else {
+				texto.style.visibility = 'visible';
+			}
+		}
+		setInterval(parpadear, 500);
+	</script>
+</head>
+<body>
+	<h1 id="texto">Este texto parpadeará</h1>
+</body>
+</html>

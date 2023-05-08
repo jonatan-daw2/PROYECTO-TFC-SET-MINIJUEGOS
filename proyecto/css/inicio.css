@@ -1,0 +1,45 @@
+        /* Establecemos la imagen de fondo en formato gif del mapa del comecocos */
+        body {
+            background-image: url('../imagenes/incio.gif');
+            background-repeat: no-repeat;
+            background-size: 100%;
+            
+        }
+        
+        /* Cambiamos el color de la barra de menú a oscuro */
+        .navbar-dark {
+            background-color: rgba(3, 18, 33, 0.8);
+        }
+
+        #navbarNav .nav-link{
+            color: lightpink;
+            transform: translate(205%);
+        }
+
+        footer {
+            background-color: rgba(3, 18, 33, 0.8);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            color: lightpink;
+        }   
+
+        .d-flex{
+            background-color: rgba(3, 18, 33, 0.8);
+            padding: 50px;
+            width: 460px;
+            height: 250px;
+            border-radius: 10px;
+            position: absolute;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%,-7%);
+            color: lightskyblue
+        }
+
+        .mt-3{
+            width: 200px;
+        }
