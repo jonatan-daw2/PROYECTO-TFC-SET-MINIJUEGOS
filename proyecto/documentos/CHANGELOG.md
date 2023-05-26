@@ -1,6 +1,14 @@
 # Changelog
 Registro de cambios en el proyecto setJuegos
 
+## [0.2.0] - 2024-05-26
+### Added
+- Creación puntuacion.js
+- Reinicio del juego
+- Mostrar puntuacion
+- Mostrar puntuacion mas alta durante la sesión
+- Muestra de pantalla de fin del juego y de inicio
+
 ## [0.1.9] - 2024-05-06
 ### Added
 - Creación jugador.js
