@@ -80,8 +80,11 @@ export class Jugador{
 
     //velocidad del dinosaurio
     actualizar(velocidad, frame){
-        console.log(this.salto_presionado);
+        //console.log(this.salto_presionado);
         this.correr(velocidad, frame);
+        if(this.salto_progreso){
+            this.imagen = this.imagenEstatica;
+        }
         this.saltar(frame);
     }
 

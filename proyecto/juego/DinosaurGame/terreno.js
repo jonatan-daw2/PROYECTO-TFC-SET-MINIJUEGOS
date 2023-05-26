@@ -32,4 +32,8 @@ export class Terreno{
     actualizar(velocidad, frame){
         this.x -= velocidad * frame * this.velocidad * this.escala;
     }
+
+    reinicio(){
+        this.x = 0;
+    }
 }

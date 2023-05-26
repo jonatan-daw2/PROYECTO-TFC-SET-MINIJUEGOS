@@ -32,7 +32,7 @@
                     <a class='nav-link' href='#' id="top">RANKING</a>
                 </li>
                 <li class='nav-item'>
-                    <a class='nav-link jugar' href='../proyecto/juego/tetris.html' id="jugar">JUGAR</a>
+                    <a class='nav-link jugar' href='../proyecto/juego/tetris/tetris.html' id="jugar">JUGAR</a>
                 </li>
                 <li class='nav-item'>
                     <form action='sesion.php' method='post' class='d-flex'>
