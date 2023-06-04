@@ -10,9 +10,9 @@ function cargarEventos(evento){
 }
 
 function login(){
-    location.href = 'http://localhost/TETRIS/proyecto/login.php';
+    location.href = 'http://localhost/TETRIS/TFC/proyecto/login.php';
 }
 
 function registro(){
-    location.href = 'http://localhost/TETRIS/proyecto/registro.php';
+    location.href = 'http://localhost/TETRIS/TFC/proyecto/registro.php';
 }

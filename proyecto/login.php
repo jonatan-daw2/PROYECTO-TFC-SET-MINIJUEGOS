@@ -24,7 +24,7 @@
         }
 
         if($_SERVER['REQUEST_METHOD'] != "GET"){
-            $base = "tetris";
+            $base = "setjuegos";
             $usuario = "Jonny";
             $pass = "Ch0k0l4t3";
             $local = "localhost";
@@ -32,7 +32,7 @@
 
             $mysqli = new mysqli($local,$usuario,$pass,$base);
 
-            $consulta_tabla = $mysqli->query("SELECT apodo from usuario where UPPER(apodo)='$dato' AND pass='$password';");
+            $consulta_tabla = $mysqli->query("SELECT apodo from setjuegos.usuario where UPPER(apodo)='$dato' AND pass='$password';");
             if($consulta_tabla->num_rows > 0){
                 $_SESSION["apodo"] = $apodo;
                 header("Location:sesion.php");

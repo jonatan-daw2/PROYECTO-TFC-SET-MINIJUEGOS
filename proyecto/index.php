@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <h1><a class="nav-link" href="../proyecto/index.html">Proyecto Curso</a></h1>
+                    <h1><a class="nav-link" href="../proyecto/index.php">Proyecto Curso</a></h1>
                 </li>
             </ul>
         </div>
@@ -25,7 +25,7 @@
     <!-- Agregamos los botones centrados en la página -->
     <div class="d-flex flex-column align-items-center">
         <h1 class="nav-link">SET MINI JUEGOS</h1>
-        <button class="btn btn-primary mt-3" href="../proyecto/login.php" id="login">Login</button>
+        <button class="btn btn-primary mt-3" href="login.php" id="login">Login</button>
         <button class="btn btn-secondary mt-3" href="registro.php" id="registro">Registro</button>
     </div>
 <footer>
