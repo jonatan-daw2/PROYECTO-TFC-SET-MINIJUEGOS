@@ -22,7 +22,7 @@ export class CactusAjustes{
        const num = this.numeroAleatorio(this.CACTUS_MIN_INT, this.CACTUS_MAX_INT);
 
        this.siguienteIntervalo = num;
-       console.log(this.siguienteIntervalo);
+      // console.log(this.siguienteIntervalo);
     }
 
     //numero aleatorio para la obtencion del intervalo
@@ -55,7 +55,7 @@ export class CactusAjustes{
 
         this.cactus = this.cactus.filter((cactus) => cactus.x > -cactus.anchura);
 
-        console.log(this.cactus.length);
+       // console.log(this.cactus.length);
     }
 
     dibujar(){

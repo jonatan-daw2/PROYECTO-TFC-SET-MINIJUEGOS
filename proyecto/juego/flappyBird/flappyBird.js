@@ -2,12 +2,22 @@ import { Imagen } from "./imagenes.js";
 import { Bird } from "./pajaro.js";
 import { Tuberias } from "./tuberias.js";
 
+const urlParams = new URLSearchParams(window.location.search);
+const num = urlParams.get('num');
+
+export const numero = num;
+
 const canvas = document.getElementById("canvasGame");
 const contexto_canvas = canvas.getContext("2d");
 const highScoreDiv = document.getElementById("highScore");
 const imagen = new Image();
 let frames = -1;
-imagen.src = "imagenes/juego.png";
+if(num == 2 || num == 3){
+    imagen.src = "imagenes/juego"+ num +".png";
+}else{
+    imagen.src = "imagenes/juego.png";
+}
+
 
 //Suelo y cielo
 let mapa = new Imagen(contexto_canvas, imagen);
@@ -76,7 +86,7 @@ document.addEventListener("click", function(event){
                 contexto_canvas.strokeText(highScore, 225, 228);
             }
             highScoreDiv.textContent = "Puntuacion mas alta: " + highScore;
-
+            //alert("murio");
             // const startBtn = {
             //     x : 120,
             //     y : 263,
@@ -85,6 +95,16 @@ document.addEventListener("click", function(event){
             // }
             //Boton de start
             if(clickX >= (canvas.width/2 - 90/2) && clickX <= (canvas.width/2 - 190) + 225 && clickY >= 200 && clickY <= 180 + 60){
+                const urlParams = new URLSearchParams(window.location.search);
+                const apodo = urlParams.get('apodo');
+                $.post('../../guardarPuntuacion.php',{
+                    puntuacion: score,
+                    apodo: apodo,
+                    idJuego : 5
+                },function(datos,estadoPeticion){
+                    console.log("Información: " + datos);
+                    console.log("Estado de la petición: " + estadoPeticion);
+                });
                 estado.corriendo = estado.listo;
                 tuberias.reiniciar();
                 //console.log(estado.corriendo);
@@ -173,8 +193,8 @@ function loop() {
     frames++;
     //console.log(frames);
     //console.log(estado.corriendo);
-    console.log("puntuacion Maxima " + highScore);
-    console.log("puntuacion " + score);
+    //console.log("puntuacion Maxima " + highScore);
+    //console.log("puntuacion " + score);
     requestAnimationFrame(loop);
 }
 

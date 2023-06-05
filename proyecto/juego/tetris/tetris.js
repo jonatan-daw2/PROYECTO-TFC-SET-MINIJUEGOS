@@ -1,3 +1,5 @@
+const urlParams = new URLSearchParams(window.location.search);
+const apodo = urlParams.get('apodo');
 //Guardamos en unvariable constante del canvas en si que sera donde se generará el juego
 const canvas = document.getElementById("tetris");
 const siguienteCanvas = document.getElementById("siguiente");
@@ -154,6 +156,7 @@ function caidaPieza(){
         eliminacionLineas();
         actualizarPuntuacion();
     }
+
     contador_caida = 0;
 }
 
@@ -210,7 +213,7 @@ function colisiones(tabla,jugador){
             }
         }
     }
-
+    
     return false;
 }
 
@@ -250,8 +253,21 @@ function playerReset(){
     jugador.posicion.y = 0;
     if(colisiones(tabla,jugador)){
         tabla.forEach(fila => fila.fill(0));
+        jugador.puntuacion = 0;
+        jugador.nivel = 0;
+        jugador.lineas = 0;
+        actualizarPuntuacion();
         //alert("fin del juego");
-        cancelAnimationFrame(actualizacion);
+        // cancelAnimationFrame(actualizacion);
+        puntuacionPartida = jugador.puntuacion;
+        $.post('../../guardarPuntuacion.php', {
+            puntuacion: puntuacionPartida,
+            apodo: apodo,
+            idJuego: 1
+        }, function (datos, estadoPeticion) {
+            console.log("Información: " + datos);
+            console.log("Estado de la petición: " + estadoPeticion);
+        });
         gameOver = true;
 
         contexto_canvas.fillStyle = 'black';

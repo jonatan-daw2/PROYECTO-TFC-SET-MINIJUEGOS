@@ -1,4 +1,6 @@
 import { Imagen } from "./imagenes.js";
+import { numero } from "./flappyBird.js";
+
 export class Bird {
     animaciones = [];
     constructor(contexto, imagen) {
@@ -40,8 +42,12 @@ export class Bird {
 
         //imagen
         this.imagenSuelo = new Image();
-        this.imagenSuelo.src = "imagenes/juego.png";
-        //objeto suelo
+        if(numero == 2 || numero == 3){
+            this.imagenSuelo.src = "imagenes/juego"+ numero +".png";
+        }else{
+            this.imagenSuelo.src = "imagenes/juego.png";
+        }
+                //objeto suelo
         this.suelo = new Imagen(this.contexto,this.imagenSuelo);
 
         //estado del juego

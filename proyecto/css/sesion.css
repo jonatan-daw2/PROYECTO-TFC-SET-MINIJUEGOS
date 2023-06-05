@@ -1,13 +1,13 @@
-.form-control{
+.form-control {
   transform: translate(5%);
 }
 
-.btn{
+.btn {
   transform: translate(10%);
   width: 100px;
 }
 
-#out{
+#out {
   transform: translate(12%);
   border-radius: 5px;
   height: 40px;
@@ -19,28 +19,25 @@
   font-size: small;
 }
 
-body{
+body {
   background: url("../imagenes/sesion.gif");
-  background-size: 83%;
+  background-size: 84%;
+  overflow: hidden;
 }
 
-#bienvenido{
+#bienvenido {
   text-align: center;
   margin-top: 50px; /* ajusta el margen superior según sea necesario */
   color: purple;
-  background-color:  rgba(219, 225, 232, 0.5);
+  background-color: rgba(219, 225, 232, 0.5);
   width: 210px;
   margin-left: 650px;
   margin-top: 200px;
   border-radius: 10px;
 }
 
-#top{
+#top {
   margin-right: 1000px;
-}
-
-#jugar{
-  transform: translate(-1550%);
 }
 
 .center {
@@ -50,17 +47,19 @@ body{
   height: 100vh;
 }
 
-#juegos{
-  overflow: hidden;
+.form-control {
+  transform: translate(-280%);
+  width: 150px;
 }
 
-.card-img-top {
-  width: 100%;
-  max-height: 100px;
-  object-fit: cover;
-  border-radius: 10px 10px 0 0;
+.btn {
+  transform: translate(-410%);
 }
 
-.play-button {
-  margin-right: 15px;
+#out {
+  transform: translate(-410%);
+}
+
+#monedas{
+  transform: translate(-470px);
 }

@@ -1,0 +1,121 @@
+#juegos {
+    background: url("../imagenes/tienda.gif");
+    background-size: 84%;
+    overflow-x: hidden;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    background-color: rgba(191, 85, 236, 0.8);
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.card-body {
+    padding: 20px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #BF55EC;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.card-img-top {
+    width: 100%;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+}
+
+.play-button {
+    margin-right: 15px;
+    margin-top: auto;
+}
+
+#out {
+    transform: translate(12%);
+    border-radius: 5px;
+    height: 40px;
+    width: 80px;
+    background-color: #343a40;
+    border-color: white;
+    color: white;
+    text-align: center;
+    font-size: small;
+}
+
+.form-control {
+    transform: translate(5%);
+}
+
+.btn {
+    transform: translate(10%);
+    width: 100px;
+}
+
+#perfil {
+    margin-right: 1380px;
+}
+
+#tienda {
+    transform: translate(-1985%);
+}
+
+#top {
+    transform: translate(-1650%);
+}
+
+h2 {
+    color: firebrick;
+
+}
+
+.card-img-top {
+    max-width: 320px;
+    height: 256px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    margin-left: -40px;
+}
+
+#monedas{
+    transform: translate(-400%);
+}

@@ -27,12 +27,12 @@ CREATE TABLE juego (
 );
 
 CREATE TABLE puntuaciones (
+  idPuntuacion INT AUTO_INCREMENT PRIMARY KEY,
   idJugador INT,
   idJuego INT,
   puntuacion INT,
   FOREIGN KEY (idJugador) REFERENCES jugador(idJugador),
-  FOREIGN KEY (idJuego) REFERENCES juego(idJuego),
-  PRIMARY KEY (idJugador, idJuego)
+  FOREIGN KEY (idJuego) REFERENCES juego(idJuego)
 );
 
 CREATE TABLE tienda (
@@ -40,6 +40,23 @@ CREATE TABLE tienda (
   nombre VARCHAR(50),
   imagen LONGBLOB NOT NULL,
   precio INT NOT NULL DEFAULT 0
+);
+
+CREATE TABLE compra (
+  idCompra INT AUTO_INCREMENT PRIMARY KEY,
+  idJugador INT,
+  idProducto INT,
+  FOREIGN KEY (idJugador) REFERENCES jugador(idJugador),
+  FOREIGN KEY (idProducto) REFERENCES tienda(idProducto)
+);
+
+CREATE TABLE skins (
+  idSkins INT AUTO_INCREMENT PRIMARY KEY,
+  idJugador INT,
+  idProducto INT,
+  skinsSeleccionada TINYINT,
+  FOREIGN KEY (idJugador) REFERENCES jugador(idJugador),
+  FOREIGN KEY (idProducto) REFERENCES juego(idProducto)
 );
 
 ALTER TABLE usuario

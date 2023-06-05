@@ -1,3 +1,12 @@
+const urlParams = new URLSearchParams(window.location.search);
+const apodo = urlParams.get('apodo');
+const num = urlParams.get('num');
+const imagen = document.getElementById('animacion');
+
+if(num == 1 || num == 2 || num == 3){
+    imagen.src = "comecocos"+num+".gif";
+}
+
 const canvas = document.getElementById("canvas");
 const contexto_canvas = canvas.getContext("2d");
 
@@ -11,14 +20,15 @@ let tamanioBloques = 20;
 let color = "#1341AC";
 
 //wallSpaceWidth
-let espacioAnchuraMuro = tamanioBloques/1.7;
+let espacioAnchuraMuro = tamanioBloques / 1.7;
 //wallOffset
-let muroTamanio = (tamanioBloques - espacioAnchuraMuro)/2;
+let muroTamanio = (tamanioBloques - espacioAnchuraMuro) / 2;
 let colorEspacioMuros = "black";
 
 let colorCocos = "orange";
 let puntuacion = 0;
 let listaVecinos = 0;
+let acabo = false;
 
 const DERECHA = 4;
 const ARRIBA = 3;
@@ -29,7 +39,7 @@ let vidas = 3;
 let fantasmas = [];
 //let fantasmaVulnerable = [];
 //                           rojo       naranja      rosa        azul
-let localizacionFantasmas = [{x:0, y:0},{x:176,y:0},{x:0,y:121},{x:176,y:121}];
+let localizacionFantasmas = [{ x: 0, y: 0 }, { x: 176, y: 0 }, { x: 0, y: 121 }, { x: 176, y: 121 }];
 
 let mapa = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -59,24 +69,24 @@ let mapa = [
 
 let anchoMapa = mapa[0].length * tamanioBloques;
 let altoMapa = mapa.length * tamanioBloques;
-let objetivoFantasmas = [{x:1*tamanioBloques, y:1*tamanioBloques}, 
-                         {x:1*tamanioBloques, y:(mapa.length-2)*tamanioBloques},
-                         {x:(mapa[0].length-2) * tamanioBloques, y: tamanioBloques},
-                         {x:(mapa[0].length-2) * tamanioBloques, y:(mapa.length-2)*tamanioBloques},
-                         {x:1, y:1,},
-                         {x:4, y:5,},
-                         {x:1, y:9,},
-                         {x:4, y:10,},
-                         {x:4, y:14,},
-                         {x:0, y:19,},
-                         {x:8, y:7,},
-                         {x:8, y:13},
-                         {x:8, y:13},
-                         {x:15, y:7},
-                         {x:15, y:12},
-                         {x:21, y:19},
-                         {x:21, y:10},
-                         {x:21, y:1}];
+let objetivoFantasmas = [{ x: 1 * tamanioBloques, y: 1 * tamanioBloques },
+{ x: 1 * tamanioBloques, y: (mapa.length - 2) * tamanioBloques },
+{ x: (mapa[0].length - 2) * tamanioBloques, y: tamanioBloques },
+{ x: (mapa[0].length - 2) * tamanioBloques, y: (mapa.length - 2) * tamanioBloques },
+{ x: 1, y: 1, },
+{ x: 4, y: 5, },
+{ x: 1, y: 9, },
+{ x: 4, y: 10, },
+{ x: 4, y: 14, },
+{ x: 0, y: 19, },
+{ x: 8, y: 7, },
+{ x: 8, y: 13 },
+{ x: 8, y: 13 },
+{ x: 15, y: 7 },
+{ x: 15, y: 12 },
+{ x: 21, y: 19 },
+{ x: 21, y: 10 },
+{ x: 21, y: 1 }];
 
 /*let anchoMapa = mapa[0].length * tamanioBloques;
 let altoMapa = mapa.length * tamanioBloques;
@@ -92,19 +102,35 @@ let objetivoFantasmas = [
     esquinaInferiorIzquierda,
     esquinaInferiorDerecha
   ];*/
+let spacePressed = false;
 
-function creacionLienzo(x, y, anchura, altura, color){
+document.addEventListener("keydown", function (event) {
+    if (event.code === "Space") {
+        spacePressed = true;
+        loop(); // Iniciar el juego cuando se presione la tecla de espacio
+    }
+});
+
+function creacionLienzo(x, y, anchura, altura, color) {
     contexto_canvas.fillStyle = color;
     contexto_canvas.fillRect(x, y, anchura, altura);
 }
 
-function loop(){
+function loop() {
+    if (!spacePressed) {
+        dibujar();
+        contexto_canvas.font = "20px emulogic";
+        contexto_canvas.fillStyle = "yellow";
+        contexto_canvas.fillText("START!!", 130, 200);
+        requestAnimationFrame(loop);
+        return; // Salir del bucle si la tecla de espacio no ha sido presionada
+    }
     dibujar();
     actualizar();
     console.log(mapa);
 }
 
-function actualizar(){
+function actualizar() {
     //cosas
     comecocos.procesoMovimiento();
     comecocos.comer();
@@ -112,53 +138,64 @@ function actualizar(){
         fantasmas[i].procesoMovimiento();
     }*/
     actualizarFantasmas();
-    if(comecocos.colisionesFantasmas() == true){
+    if (comecocos.colisionesFantasmas() == true) {
         reiniciarJuego();
     }
-    if(puntuacion>=419){
+    if (puntuacion >= 419) {
         clearInterval(intervalo);
         dibujarVictoria();
     }
 }
 
-function reiniciarJuego(){
+function reiniciarJuego() {
     crearComecocos();
     crearFantasmas();
     vidas--;
-    if(vidas == 0){
+    if (vidas == 0) {
         finDelJuego();
+        $.post('../../guardarPuntuacion.php', {
+            puntuacion: puntuacion,
+            apodo: apodo,
+            idJuego: 2
+        }, function (datos, estadoPeticion) {
+            console.log("Información: " + datos);
+            console.log("Estado de la petición: " + estadoPeticion);
+        });
     }
 };
 
-function finDelJuego(){
+function finDelJuego() {
     dibujarFinJuego();
     clearInterval(intervalo);
 }
 
-function dibujarFinJuego(){
+
+
+
+function dibujarFinJuego() {
     contexto_canvas.font = "20px emulogic";
     contexto_canvas.fillStyle = "red";
     contexto_canvas.fillText("GAME OVER!!", 100, 200);
 }
 
-function dibujarVictoria(){
+function dibujarVictoria() {
     contexto_canvas.font = "20px emulogic";
     contexto_canvas.fillStyle = "yellow";
     contexto_canvas.fillText("WINNER!!", 130, 200);
 }
 
-function dibujarVidas(){
+function dibujarVidas() {
     contexto_canvas.font = "20px emulogic";
     contexto_canvas.fillStyle = "green";
     contexto_canvas.fillText("Lives: ", 200, tamanioBloques * (mapa.length + 1) + 10);
     for (let i = 0; i < vidas; i++) {
-        contexto_canvas.drawImage(comecocosFrame,2 * tamanioBloques,0,tamanioBloques,tamanioBloques,320 + i * tamanioBloques,tamanioBloques * mapa.length + 12,tamanioBloques,tamanioBloques);
+        contexto_canvas.drawImage(comecocosFrame, 2 * tamanioBloques, 0, tamanioBloques, tamanioBloques, 320 + i * tamanioBloques, tamanioBloques * mapa.length + 12, tamanioBloques, tamanioBloques);
     }
 }
 
-function dibujar(){
+function dibujar() {
     //dibujamos aqui el lienzo
-    creacionLienzo(0,0,canvas.width,canvas.height,"black");
+    creacionLienzo(0, 0, canvas.width, canvas.height, "black");
     dibujarIntervalos();
     dibujoCocos();
     comecocos.dibujar();
@@ -167,85 +204,85 @@ function dibujar(){
     dibujarVidas();
 }
 
-function dibujoCocos(){
+function dibujoCocos() {
     let cont = 0;
-    for(let i=0; i<mapa.length; i++){
-        for(let j=0; j<mapa[0].length; j++){
-            if(mapa[i][j] == 2){
-                cont ++;
-                if(i==3 && j==19 || i==3 && j==1 || i==17 && j==1 || i==17 && j==19){
-                    cont ++;
+    for (let i = 0; i < mapa.length; i++) {
+        for (let j = 0; j < mapa[0].length; j++) {
+            if (mapa[i][j] == 2) {
+                cont++;
+                if (i == 3 && j == 19 || i == 3 && j == 1 || i == 17 && j == 1 || i == 17 && j == 19) {
+                    cont++;
                     contexto_canvas.beginPath();
-                    contexto_canvas.arc(j * tamanioBloques + tamanioBloques/2, i * tamanioBloques + tamanioBloques/2, tamanioBloques/3, 0, 2 * Math.PI);
+                    contexto_canvas.arc(j * tamanioBloques + tamanioBloques / 2, i * tamanioBloques + tamanioBloques / 2, tamanioBloques / 3, 0, 2 * Math.PI);
                     contexto_canvas.fillStyle = colorCocos;
                     contexto_canvas.fill();
                     contexto_canvas.closePath();
-                }else{
-                    creacionLienzo(j*tamanioBloques+tamanioBloques/3, i*tamanioBloques+tamanioBloques/3, tamanioBloques/3, tamanioBloques/3, colorCocos);
+                } else {
+                    creacionLienzo(j * tamanioBloques + tamanioBloques / 3, i * tamanioBloques + tamanioBloques / 3, tamanioBloques / 3, tamanioBloques / 3, colorCocos);
                 }
             }
-            
+
         }
     }
     //console.log(cont);
 }
 
-function dibujarPuntuacion(){
+function dibujarPuntuacion() {
     contexto_canvas.font = "20px emulogic";
     contexto_canvas.fillStyle = "green";
-    contexto_canvas.fillText("Score:", 0, tamanioBloques*(mapa.length+1)+10);
+    contexto_canvas.fillText("Score:", 0, tamanioBloques * (mapa.length + 1) + 10);
     contexto_canvas.fillStyle = "white";
-    contexto_canvas.fillText(puntuacion, 120, tamanioBloques*(mapa.length+1)+10);
+    contexto_canvas.fillText(puntuacion, 120, tamanioBloques * (mapa.length + 1) + 10);
 }
 
 
-let intervalo = setInterval(loop, 1000/frames);
-let fantasmaAzul = setInterval(() => {fantasmas[3].actitudAzul();}, 10000);
+let intervalo = setInterval(loop, 1000 / frames);
+let fantasmaAzul = setInterval(() => { fantasmas[3].actitudAzul(); }, 10000);
 //console.log(fantasmaAzul);
 
 
 //dibujamos la forma del laberinto
-function dibujarIntervalos(){
-    for(let i = 0; i < mapa.length; i++){
-        for(let j = 0; j < mapa[0].length; j++){
+function dibujarIntervalos() {
+    for (let i = 0; i < mapa.length; i++) {
+        for (let j = 0; j < mapa[0].length; j++) {
             //Muro cuando es 1
-            if(mapa[i][j] == 1){
+            if (mapa[i][j] == 1) {
                 creacionLienzo(j * tamanioBloques, i * tamanioBloques, tamanioBloques, tamanioBloques, color);
             }
-            if(j > 0 && mapa[i][j-1] == 1){
-                creacionLienzo(j*tamanioBloques,i*tamanioBloques+muroTamanio,espacioAnchuraMuro+muroTamanio,espacioAnchuraMuro,colorEspacioMuros)
+            if (j > 0 && mapa[i][j - 1] == 1) {
+                creacionLienzo(j * tamanioBloques, i * tamanioBloques + muroTamanio, espacioAnchuraMuro + muroTamanio, espacioAnchuraMuro, colorEspacioMuros)
             }
-            if(j < mapa[0].length - 1 && mapa[i][j+1] == 1){
-                creacionLienzo(j*tamanioBloques + muroTamanio,i*tamanioBloques + muroTamanio,espacioAnchuraMuro+muroTamanio,espacioAnchuraMuro,colorEspacioMuros);
+            if (j < mapa[0].length - 1 && mapa[i][j + 1] == 1) {
+                creacionLienzo(j * tamanioBloques + muroTamanio, i * tamanioBloques + muroTamanio, espacioAnchuraMuro + muroTamanio, espacioAnchuraMuro, colorEspacioMuros);
             }
-            if(i > 0 && mapa[i-1][j] == 1){
-                creacionLienzo(j*tamanioBloques+muroTamanio,i*tamanioBloques,espacioAnchuraMuro,espacioAnchuraMuro+muroTamanio,colorEspacioMuros)
+            if (i > 0 && mapa[i - 1][j] == 1) {
+                creacionLienzo(j * tamanioBloques + muroTamanio, i * tamanioBloques, espacioAnchuraMuro, espacioAnchuraMuro + muroTamanio, colorEspacioMuros)
             }
-            if(i < mapa.length - 1 && mapa[i+1][j] == 1){
-                creacionLienzo(j*tamanioBloques + muroTamanio,i*tamanioBloques + muroTamanio,espacioAnchuraMuro,espacioAnchuraMuro+muroTamanio,colorEspacioMuros);
+            if (i < mapa.length - 1 && mapa[i + 1][j] == 1) {
+                creacionLienzo(j * tamanioBloques + muroTamanio, i * tamanioBloques + muroTamanio, espacioAnchuraMuro, espacioAnchuraMuro + muroTamanio, colorEspacioMuros);
             }
         }
-        
+
     }
 }
 
 function crearComecocos() {
-    comecocos = new Comecocos(tamanioBloques,tamanioBloques,tamanioBloques,tamanioBloques,tamanioBloques/10);
+    comecocos = new Comecocos(tamanioBloques, tamanioBloques, tamanioBloques, tamanioBloques, tamanioBloques / 10);
 };
 
-function crearFantasmas(){
+function crearFantasmas() {
     fantasmas = [];
-    for(let i=0; i<4; i++){
-        let nuevosFantasmas = new Fantasmas( 9 * tamanioBloques + (i % 2 == 0 ? 0 : 1) * tamanioBloques,
-        10 * tamanioBloques + (i % 2 == 0 ? 0 : 1) * tamanioBloques,
-        tamanioBloques,
-        tamanioBloques,
-        (tamanioBloques/8)/2,
-        localizacionFantasmas[i % 4].x,
-        localizacionFantasmas[i % 4].y,
-        124,
-        116,
-        6+i);
+    for (let i = 0; i < 4; i++) {
+        let nuevosFantasmas = new Fantasmas(9 * tamanioBloques + (i % 2 == 0 ? 0 : 1) * tamanioBloques,
+            10 * tamanioBloques + (i % 2 == 0 ? 0 : 1) * tamanioBloques,
+            tamanioBloques,
+            tamanioBloques,
+            (tamanioBloques / 8) / 2,
+            localizacionFantasmas[i % 4].x,
+            localizacionFantasmas[i % 4].y,
+            124,
+            116,
+            6 + i);
         fantasmas.push(nuevosFantasmas);
     }
     fantasmas[0].rango = 75;
@@ -292,16 +329,17 @@ crearFantasmas();
 loop();
 
 document.addEventListener("keydown", event => {
-    if(event.key=="ArrowDown" || event.key=="s"){
+    if (event.key == "ArrowDown" || event.key == "s") {
         comecocos.proximaDirec = ABAJO;
     }
-    if(event.key=="ArrowUp" || event.key=="w"){
+    if (event.key == "ArrowUp" || event.key == "w") {
         comecocos.proximaDirec = ARRIBA;
     }
-    if(event.key=="ArrowLeft" || event.key=="a"){;
+    if (event.key == "ArrowLeft" || event.key == "a") {
+        ;
         comecocos.proximaDirec = IZQUIERDA;
     }
-    if(event.key=="ArrowRight" || event.key=="d"){
+    if (event.key == "ArrowRight" || event.key == "d") {
         comecocos.proximaDirec = DERECHA;
     }
 });

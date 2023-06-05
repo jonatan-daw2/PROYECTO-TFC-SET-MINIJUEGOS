@@ -1,3 +1,6 @@
+import { numeroDino } from './game.js';
+import { letraDino } from './game.js';
+
 export class Jugador{
 
     animaciones = [];
@@ -15,7 +18,11 @@ export class Jugador{
         this.x = 10 * escala;
         this.y = this.canvas.height - this.altura - 1.5 * escala;
         this.imagenEstatica = new Image();
-        this.imagenEstatica.src = "imagenes/DinosaurDefault.png";
+        if(numeroDino == 9 || numeroDino == 10 || numeroDino == 11){
+            this.imagenEstatica.src = "imagenes/"+ letraDino +"DinosaurDefault"+ numeroDino  +".png";
+        }else{
+            this.imagenEstatica.src = "imagenes/DinosaurDefault.png";
+        }
         this.imagen = this.imagenEstatica;
 
         //salto imagen dinosaur con animacion
@@ -26,8 +33,10 @@ export class Jugador{
         this.contadorAnimacion = this.animacion_caminar;
         const andar1 = new Image();
         const andar2 = new Image();
-        andar1.src = "imagenes/DinosaurWalking1.png";
-        andar2.src = "imagenes/DinosaurWalking2.png";
+        if(numeroDino == 9 || numeroDino == 10 || numeroDino == 11){
+            andar1.src = "imagenes/"+ letraDino+ "DinosaurWalking"+ numeroDino +".png";
+            andar2.src = "imagenes/"+ letraDino+ "DinosaurWalk"+ numeroDino+ ".png";
+        }
 
         this.animaciones.push(andar1);
         this.animaciones.push(andar2);

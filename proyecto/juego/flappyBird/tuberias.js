@@ -1,47 +1,53 @@
+import { numero } from "./flappyBird.js";
 import { Bird } from "./pajaro.js"
-export class Tuberias{
-    posicion = [];
-    
-    constructor(contexto,imagen){
-        this.contexto = contexto;
-        this.canvas = contexto.canvas;
-        //imagen del juego
-        this.imagen = imagen;
+export class Tuberias {
+  posicion = [];
 
-        this.top = { sX: 553, sY: 0};
-        this.bottom = { sX: 502, sY: 0};
+  constructor(contexto, imagen) {
+    this.contexto = contexto;
+    this.canvas = contexto.canvas;
+    //imagen del juego
+    this.imagen = imagen;
 
-        this.w = 53;
-        this.h = 400;
-        this.hueco = 85;
-        this.maxYPos = -150;
-        this.dx = 2;
+    this.top = { sX: 553, sY: 0 };
+    this.bottom = { sX: 502, sY: 0 };
 
-         //imagen
-         this.pajaroImagen = new Image();
-         this.pajaroImagen.src = "imagenes/juego.png";
-         //objeto suelo
-         this.pajaro = new Bird(this.contexto,this.pajaroImagen);
+    this.w = 53;
+    this.h = 400;
+    this.hueco = 85;
+    this.maxYPos = -150;
+    this.dx = 2;
 
-         //estado del juego
-        this.modificacionEstado = 0;
-
-        //puntuacion
-        this.puntuacion = 0;
-
-        //sonido
-        this.sonido1 = new Audio();
-        this.sonido1.src = "sonidos/sfx_point.wav";
-
-        this.sonido2 = new Audio();
-        this.sonido2.src = "sonidos/sfx_hit.wav";
+    //imagen
+    this.pajaroImagen = new Image();
+    if (numero == 2 || numero == 3) {
+      this.pajaroImagen.src = "imagenes/juego" + numero + ".png";
+    } else {
+      this.pajaroImagen.src = "imagenes/juego.png";
     }
-    
-    //Dibujado de las tuberias
-//Dibujado de las tuberias
-// Dibujado de las tuberias
-dibujar(){
-  for(let i=0; i<this.posicion.length; i++){
+
+    //objeto suelo
+    this.pajaro = new Bird(this.contexto, this.pajaroImagen);
+
+    //estado del juego
+    this.modificacionEstado = 0;
+
+    //puntuacion
+    this.puntuacion = 0;
+
+    //sonido
+    this.sonido1 = new Audio();
+    this.sonido1.src = "sonidos/sfx_point.wav";
+
+    this.sonido2 = new Audio();
+    this.sonido2.src = "sonidos/sfx_hit.wav";
+  }
+
+  //Dibujado de las tuberias
+  //Dibujado de las tuberias
+  // Dibujado de las tuberias
+  dibujar() {
+    for (let i = 0; i < this.posicion.length; i++) {
       let p = this.posicion[i];
 
       let topYPos = p.y;
@@ -66,65 +72,65 @@ dibujar(){
       this.contexto.strokeStyle = "red";
       this.contexto.lineWidth = 2;
       this.contexto.stroke();
+    }
   }
-}
 
 
 
 
-    //va mostrando tuberias a medida que trancurre la partida
-    actualizar(estado, frames) {
-      if (estado !== 1) {
-        return;
-      }
-    
-      if (frames % 100 === 0) {
-        this.posicion.push({ x: this.canvas.width, y: this.maxYPos * (Math.random() + 1) });
-      }
-    
-      for (let i = 0; i < this.posicion.length; i++) {
-        let p = this.posicion[i];
-    
-        // Colisiones con las tuberías
-        let bottomTuboYPos = p.y + this.h + this.hueco;
-        
+  //va mostrando tuberias a medida que trancurre la partida
+  actualizar(estado, frames) {
+    if (estado !== 1) {
+      return;
+    }
+
+    if (frames % 100 === 0) {
+      this.posicion.push({ x: this.canvas.width, y: this.maxYPos * (Math.random() + 1) });
+    }
+
+    for (let i = 0; i < this.posicion.length; i++) {
+      let p = this.posicion[i];
+
+      // Colisiones con las tuberías
+      let bottomTuboYPos = p.y + this.h + this.hueco;
+
       //tuberia inferior
-      if (
-          this.pajaro.x + this.pajaro.radio > p.x &&
-          this.pajaro.x - this.pajaro.radio < p.x + this.w &&
-          this.pajaro.y + this.pajaro.radio > bottomTuboYPos &&
-          this.pajaro.y - this.pajaro.radio < bottomTuboYPos + this.h
-        ) {
-          this.modificacionEstado = 2;
-          this.sonido2.play();
-        }
+      // if (
+      //     this.pajaro.x + this.pajaro.radio > p.x &&
+      //     this.pajaro.x - this.pajaro.radio < p.x + this.w &&
+      //     this.pajaro.y + this.pajaro.radio > bottomTuboYPos &&
+      //     this.pajaro.y - this.pajaro.radio < bottomTuboYPos + this.h
+      //   ) {
+      //     this.modificacionEstado = 2;
+      //     this.sonido2.play();
+      //   }
 
-        //tuberia superior
-        if (
-          this.pajaro.x + this.pajaro.radio > p.x &&
-          this.pajaro.x - this.pajaro.radio < p.x + this.w &&
-          this.pajaro.y + this.pajaro.radio > p.y &&
-          this.pajaro.y - this.pajaro.radio < p.y + this.h
-        ) {
-          this.modificacionEstado = 2;
-          this.sonido2.play();
-        }
+      //   //tuberia superior
+      //   if (
+      //     this.pajaro.x + this.pajaro.radio > p.x &&
+      //     this.pajaro.x - this.pajaro.radio < p.x + this.w &&
+      //     this.pajaro.y + this.pajaro.radio > p.y &&
+      //     this.pajaro.y - this.pajaro.radio < p.y + this.h
+      //   ) {
+      //     this.modificacionEstado = 2;
+      //     this.sonido2.play();
+      //   }
 
-        //mover las tuberias hacia la izquierda
-        p.x -= this.dx;
-    
-        if (p.x + this.w <= 0) {
-          this.posicion.shift();
-          this.puntuacion += 1;
-          this.sonido1.play();
-        }
+      //mover las tuberias hacia la izquierda
+      p.x -= this.dx;
+
+      if (p.x + this.w <= 0) {
+        this.posicion.shift();
+        this.puntuacion += 1;
+        this.sonido1.play();
       }
     }
-      
+  }
 
-    //al perder reiniciaremos el array
-    reiniciar(){
-        this.posicion = [];
-        this.puntuacion = 0;
-    }
+
+  //al perder reiniciaremos el array
+  reiniciar() {
+    this.posicion = [];
+    this.puntuacion = 0;
+  }
 }
