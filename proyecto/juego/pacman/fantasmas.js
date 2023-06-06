@@ -18,7 +18,7 @@ class Fantasmas{
         //naranja
         setInterval(() => {fantasmas[1].cambioAleatorioDireccion();}, 5000);
         //rojo
-        setInterval(() => {fantasmas[1].objetivo = comecocos}, 1000);
+        setInterval(() => {fantasmas[1].objetivo = comecocos}, 10000);
     }
 
     //ok
