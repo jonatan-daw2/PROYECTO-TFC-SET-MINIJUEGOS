@@ -90,7 +90,7 @@
                         <a class='nav-link' href='perfil.php' id='perfil'>PERFIL</a>
                     </li>
                     <li class='nav-item'>
-                        <a class='nav-link' href='tienda.php' id='tienda'>TIENDA</a>
+                        <a class='nav-link' href='juegos.php' id='jugar'>JUGAR</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="monedas">MONEDAS:&nbsp;<?php echo $monedas ?></a>

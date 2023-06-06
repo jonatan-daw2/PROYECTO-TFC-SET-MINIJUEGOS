@@ -225,9 +225,9 @@ class Fantasmas{
         contexto_canvas.drawImage(fantasmaFrame,this.imagenX,this.imagenY,this.imagenAnchura,this.imagenAltura,this.x,this.y,this.anchura,this.altura);
         contexto_canvas.restore();
         contexto_canvas.beginPath();
-        contexto_canvas.strokeStyle='red';
-        contexto_canvas.arc(this.x + tamanioBloques/2, this.y + tamanioBloques/2, this.rango * tamanioBloques, 0, 2 * Math.PI);
-        contexto_canvas.stroke();
+        // contexto_canvas.strokeStyle='red';
+        // contexto_canvas.arc(this.x + tamanioBloques/2, this.y + tamanioBloques/2, this.rango * tamanioBloques, 0, 2 * Math.PI);
+        // contexto_canvas.stroke();
     }
 
     //ok

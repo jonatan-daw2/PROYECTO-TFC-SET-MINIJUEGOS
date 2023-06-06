@@ -133,7 +133,18 @@
           $consulta_compra->bind_param("i", $idJugador);
           $consulta_compra->execute();
         }
-        
+    }else{
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 2");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
+
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 3");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
+      
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 1");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
     }
 
     // Repetir el mismo patrón para skinPac
@@ -172,6 +183,18 @@
           $consulta_compra->bind_param("i", $idJugador);
           $consulta_compra->execute();
         }
+    }else{
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 4");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
+
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 5");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
+
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 6");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
     }
 
     // Repetir el mismo patrón para skinDino
@@ -210,6 +233,18 @@
           $consulta_compra->bind_param("i", $idJugador);
           $consulta_compra->execute();
         }
+    }else{
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 11");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
+
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 10");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
+
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 9");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
     }
 
     // Repetir el mismo patrón para skinFlap
@@ -233,6 +268,14 @@
           $consulta_compra->bind_param("i", $idJugador);
           $consulta_compra->execute();
         }
+    }else{
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 8");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
+
+      $consulta_compra = $mysqli->prepare("UPDATE setjuegos.skins SET skinSeleccionada = 0 WHERE idJugador = ? AND idProducto = 7");
+      $consulta_compra->bind_param("i", $idJugador);
+      $consulta_compra->execute();
     }
 
     echo '<h1 style="color: green;">Datos Guardados</h1>';
@@ -282,8 +325,8 @@
             <input type="radio" name="skinPac" value="5" style="<?php echo $mostrarONo[4] ?>"> Skin Morada<br>
             <input type="radio" name="skinPac" value="6" style="<?php echo $mostrarONo[5] ?>"> Skin Azul<br>
             <a>FlappyBird Game Skins</a><br>
-            <input type="radio" name="skinFlap" value="7" style="<?php echo $mostrarONo[6] ?>"> Skin Zeke<br>
-            <input type="radio" name="skinFlap" value="8" style="<?php echo $mostrarONo[7] ?>"> Skin Sepia<br>
+            <input type="radio" name="skinFlap" value="7" style="<?php echo $mostrarONo[6] ?>"> Skin Sepia<br>
+            <input type="radio" name="skinFlap" value="8" style="<?php echo $mostrarONo[7] ?>"> Skin Zeke<br>
             <a>Dinosaur Game Skins</a><br>
             <input type="radio" name="skinDino" value="9" style="<?php echo $mostrarONo[8] ?>"> Skin Azul<br>
             <input type="radio" name="skinDino" value="10" style="<?php echo $mostrarONo[9] ?>"> Skin Verde<br>

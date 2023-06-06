@@ -260,7 +260,7 @@ function tabla5($usu, &$busqueda){
             border-radius: 5px;
             margin-left: 950px;
             margin-right: auto;
-            margin-top: -286px;
+            margin-top: -320px;
         }
 
         #tabla5{
@@ -270,7 +270,7 @@ function tabla5($usu, &$busqueda){
             border-radius: 5px;
             margin-left: 1250px;
             margin-right: auto;
-            margin-top: -230px;
+            margin-top: -250px;
         }
     </style>
 

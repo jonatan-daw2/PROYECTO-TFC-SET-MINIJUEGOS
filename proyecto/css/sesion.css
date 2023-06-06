@@ -25,15 +25,18 @@ body {
   overflow: hidden;
 }
 
-#bienvenido {
-  text-align: center;
-  margin-top: 50px; /* ajusta el margen superior según sea necesario */
-  color: purple;
-  background-color: rgba(219, 225, 232, 0.5);
-  width: 210px;
-  margin-left: 650px;
+#container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 200px;
-  border-radius: 10px;
+  margin-left: 640px; /* Ajusta la altura según sea necesario */
+  width: 210px;
+}
+
+#bienvenido{
+  text-align: center;
+  color: violet;
 }
 
 #top {
@@ -57,7 +60,7 @@ body {
 }
 
 #out {
-  transform: translate(-410%);
+  transform: translate(-500%);
 }
 
 #monedas{

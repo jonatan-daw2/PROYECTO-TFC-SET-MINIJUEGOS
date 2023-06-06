@@ -435,17 +435,7 @@ function gameLoop() {
         //     gameState = "game over";
         //   }
     }
-    // else if(gameState === "game over") {
-    //   // Display "GAME OVER" text in the center of the canvas
-    //   var centerX = canvas.width / 2;
-    //   var centerY = canvas.height / 2;
-    //   context.font = "30px Arial";
-    //   context.fillStyle = "red";
-    //   context.textAlign = "center";
-    //   context.fillText(gameOverText, centerX, centerY);
-    // }
-
-    // Llamamos a la función de nuevo después de un tiempo para animar el juego
+   
     setTimeout(gameLoop, 95);
 }
 

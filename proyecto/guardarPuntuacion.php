@@ -115,61 +115,74 @@ $consulta_actualizar->execute();
 //monedas
 if($idJuego == 5){
   if($puntuacion <= 5 && $puntuacion >0){
-    $moneda = 3;
-  }else if($puntuacion >5 && $puntuacion <= 15){
+    $moneda = 2;
+  }else if($puntuacion > 5 && $puntuacion <= 15){
     $moneda = 10;
-  }else if($puntuacion == 0){
-    $moneda = 0;
+  }else if($puntuacion > 15 && $puntuacion <= 30){
+    $moneda = 60;
+  }else if($puntuacion > 30 && $puntuacion <= 50){
+    $moneda = 100;
   }else{
-    $moneda = 25;
+    $moneda = 200;
   }
 }
 
 if($idJuego == 4){
-  if($puntuacion <= 50 && $puntuacion >0){
-    $moneda = 3;
-  }else if($puntuacion >50 && $puntuacion <= 90){
-    $moneda = 10;
-  }else if($puntuacion == 0){
+  if($puntuacion == 0 || $puntuacion <= 5){
     $moneda = 0;
+  }else if($puntuacion > 5 && $puntuacion <= 10){
+    $moneda = 5;
+  }else if($puntuacion > 10 && $puntuacion <= 30){
+    $moneda = 20;
+  }elseif($puntuacion > 30 && $puntuacion <= 50){
+    $moneda = 30;
+  }else if($puntuacion > 50 && $puntuacion <= 70){
+    $moneda = 50;
+  }else if($puntuacion > 70  && $puntuacion <= 90){
+    $moneda = 70;
+  }else if($puntuacion > 90 && $puntuacion <= 150){
+    $moneda = 100;
   }else{
-    $moneda = 25;
+    $moneda = 200;
   }
 }
 
 if($idJuego == 3){
-  if($puntuacion <= 500 && $puntuacion >0){
-    $moneda = 3;
-  }else if($puntuacion > 500 && $puntuacion <= 1600){
-    $moneda = 10;
-  }else if($puntuacion == 0){
+
+  if($puntuacion < 200 || $puntuacion == 0){
     $moneda = 0;
+  }else if($puntuacion <= 500 && $puntuacion > 200){
+    $moneda = 20;
+  }else if($puntuacion > 500 && $puntuacion <= 1600){
+    $moneda = 80;
+  }else if($puntuacion > 1600 && $puntuacion <= 3000){
+    $moneda = 100;
   }else{
-    $moneda = 25;
+    $moneda = 200;
   }
 }
 
 if($idJuego == 2){
   if($puntuacion <= 100 && $puntuacion > 0){
-    $moneda = 3;
-  }else if($puntuacion > 100 && $puntuacion <= 300){
     $moneda = 10;
+  }else if($puntuacion > 100 && $puntuacion <= 300){
+    $moneda = 20;
   }else if($puntuacion == 0){
     $moneda = 0;
   }else{
-    $moneda = 25;
+    $moneda = 80;
   }
 }
 
 if($idJuego == 1){
-  if($puntuacion <= 800 && $puntuacion > 0){
-    $moneda = 3;
-  }else if($puntuacion > 800 && $puntuacion <= 5000){
-    $moneda = 10;
-  }else if($puntuacion == 0){
+  if($puntuacion == 0){
     $moneda = 0;
+  }else if($puntuacion <= 800 && $puntuacion > 0){
+    $moneda = 50;
+  }else if($puntuacion > 800 && $puntuacion <= 5000){
+    $moneda = 100;
   }else{
-    $moneda = 25;
+    $moneda = 200;
   }
 }
 
@@ -189,6 +202,7 @@ $consulta_actualizar = $mysqli->prepare("UPDATE setjuegos.jugador SET monedas = 
 $consulta_actualizar->bind_param("ii", $monedasNuevas, $idJugador);
 $consulta_actualizar->execute();
 
-// $consulta_actualizar->close();
-// $mysqli->close();
+$consulta_preparada->close();
+$consulta_actualizar->close();
+$mysqli->close();
 ?>

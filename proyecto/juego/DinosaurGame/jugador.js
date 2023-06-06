@@ -36,6 +36,9 @@ export class Jugador{
         if(numeroDino == 9 || numeroDino == 10 || numeroDino == 11){
             andar1.src = "imagenes/"+ letraDino+ "DinosaurWalking"+ numeroDino +".png";
             andar2.src = "imagenes/"+ letraDino+ "DinosaurWalk"+ numeroDino+ ".png";
+        }else{
+            andar1.src = "imagenes/DinosaurWalking1.png";
+            andar2.src = "imagenes/DinosaurWalking2.png";
         }
 
         this.animaciones.push(andar1);

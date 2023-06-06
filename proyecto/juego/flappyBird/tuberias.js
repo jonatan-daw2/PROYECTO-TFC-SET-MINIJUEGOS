@@ -60,18 +60,18 @@ export class Tuberias {
       this.contexto.drawImage(this.imagen, this.bottom.sX, this.bottom.sY, this.w, this.h, p.x, bottomYPos, this.w, this.h);
 
       // Pintar zona de paso en verde
-      this.contexto.fillStyle = "green";
-      this.contexto.fillRect(p.x, topYPos + this.h, this.w, this.hueco);
+      // this.contexto.fillStyle = "green";
+      // this.contexto.fillRect(p.x, topYPos + this.h, this.w, this.hueco);
 
       // Pintar bordes de las tuberias en rojo
-      this.contexto.beginPath();
-      this.contexto.rect(p.x, topYPos, this.w, this.h);
-      this.contexto.strokeStyle = "red";
-      this.contexto.lineWidth = 2;
-      this.contexto.rect(p.x, bottomYPos, this.w, this.h);
-      this.contexto.strokeStyle = "red";
-      this.contexto.lineWidth = 2;
-      this.contexto.stroke();
+      // this.contexto.beginPath();
+      // this.contexto.rect(p.x, topYPos, this.w, this.h);
+      // this.contexto.strokeStyle = "red";
+      // this.contexto.lineWidth = 2;
+      // this.contexto.rect(p.x, bottomYPos, this.w, this.h);
+      // this.contexto.strokeStyle = "red";
+      // this.contexto.lineWidth = 2;
+      // this.contexto.stroke();
     }
   }
 
@@ -95,26 +95,26 @@ export class Tuberias {
       let bottomTuboYPos = p.y + this.h + this.hueco;
 
       //tuberia inferior
-      // if (
-      //     this.pajaro.x + this.pajaro.radio > p.x &&
-      //     this.pajaro.x - this.pajaro.radio < p.x + this.w &&
-      //     this.pajaro.y + this.pajaro.radio > bottomTuboYPos &&
-      //     this.pajaro.y - this.pajaro.radio < bottomTuboYPos + this.h
-      //   ) {
-      //     this.modificacionEstado = 2;
-      //     this.sonido2.play();
-      //   }
+      if (
+          this.pajaro.x + this.pajaro.radio > p.x &&
+          this.pajaro.x - this.pajaro.radio < p.x + this.w &&
+          this.pajaro.y + this.pajaro.radio > bottomTuboYPos &&
+          this.pajaro.y - this.pajaro.radio < bottomTuboYPos + this.h
+        ) {
+          this.modificacionEstado = 2;
+          this.sonido2.play();
+        }
 
-      //   //tuberia superior
-      //   if (
-      //     this.pajaro.x + this.pajaro.radio > p.x &&
-      //     this.pajaro.x - this.pajaro.radio < p.x + this.w &&
-      //     this.pajaro.y + this.pajaro.radio > p.y &&
-      //     this.pajaro.y - this.pajaro.radio < p.y + this.h
-      //   ) {
-      //     this.modificacionEstado = 2;
-      //     this.sonido2.play();
-      //   }
+        //tuberia superior
+        if (
+          this.pajaro.x + this.pajaro.radio > p.x &&
+          this.pajaro.x - this.pajaro.radio < p.x + this.w &&
+          this.pajaro.y + this.pajaro.radio > p.y &&
+          this.pajaro.y - this.pajaro.radio < p.y + this.h
+        ) {
+          this.modificacionEstado = 2;
+          this.sonido2.play();
+        }
 
       //mover las tuberias hacia la izquierda
       p.x -= this.dx;

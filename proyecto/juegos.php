@@ -40,8 +40,8 @@
   $snake = 0;
   $pacman = 0;
   $flap = 0;
-  $dinosaur;
-  $letraDino;
+  $dinosaur = 0;
+  $letraDino = 0;
 
   $consulta_tabla = $mysqli->query("SELECT idProducto from setjuegos.skins where skinSeleccionada = '$skin' and idJugador = '$idJugador';");
   if ($consulta_tabla->num_rows > 0) {
@@ -91,8 +91,8 @@
         $letraDino = "P";
       }
     }else{
-      $dinosaur = "";
-      $letraDino = "";
+      $dinosaur = 0;
+      $letraDino = 0;
     }
   }
   
