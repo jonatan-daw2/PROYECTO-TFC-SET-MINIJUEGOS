@@ -11,7 +11,7 @@ COPY . .
 RUN composer install
 
 # Expone el puerto necesario para el servidor web PHP
-EXPOSE $PORT: 8080
+EXPOSE $PORT: 8000
 
 # Ejecuta el servidor web PHP
 CMD [ "php", "-S", "0.0.0.0:$PORT", "-t", "public/" ]
