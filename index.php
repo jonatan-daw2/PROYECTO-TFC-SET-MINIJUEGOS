@@ -5,7 +5,7 @@
     <title>Inicio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Agregamos los estilos de Bootstrap -->
-    <link rel="stylesheet" href="./proyecto/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../proyecto/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../proyecto/css/inicio.css">
     <script src="../proyecto/js/app2.js"></script>
 </head>
