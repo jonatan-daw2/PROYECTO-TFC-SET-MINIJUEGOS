@@ -16,23 +16,15 @@
   <?php
   session_start();
   include("funcion.php");
+  include("db.php");
 
   if ($_SERVER['REQUEST_METHOD'] != "GET") {
     session_destroy();
     header("Location:index.php");
   }
 
-  $base = "setjuegos";
-  $usuario = "Jonny";
-  $pass = "Ch0k0l4t3";
-  $local = "localhost";
-
   $apodo = $_SESSION["apodo"];
 
-  $mysqli = new mysqli($local, $usuario, $pass, $base);
-  if ($mysqli->connect_errno) {
-    die("Error al conectar con la base de datos: " . $mysqli->connect_error);
-  }
   $monedas;
   $consulta_tabla = $mysqli->query("SELECT monedas from setjuegos.jugador where UPPER(nombre)='$apodo';");
   if ($consulta_tabla->num_rows > 0) {

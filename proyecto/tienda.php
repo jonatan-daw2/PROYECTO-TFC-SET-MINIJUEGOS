@@ -11,23 +11,15 @@
 
 <body id="juegos">
     <?php
+    include("db.php");
     session_start();
 
-    $base = "setjuegos";
-    $usuario = "Jonny";
-    $pass = "Ch0k0l4t3";
-    $local = "localhost";
 
     $apodo = $_SESSION["apodo"];
     $productos = array();
     $monedas;
     $idJugador;
     $productoSeleccionado;
-
-    $mysqli = new mysqli($local, $usuario, $pass, $base);
-    if ($mysqli->connect_errno) {
-        die("Error al conectar con la base de datos: " . $mysqli->connect_error);
-    }
 
     $consulta_tabla = $mysqli->query("SELECT imagen, idProducto, precio FROM tienda ORDER BY idProducto");
 

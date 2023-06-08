@@ -13,6 +13,7 @@
 <body>
     <?php
         include("funcion.php");
+        include("db.php");
         
         if($_SERVER["REQUEST_METHOD"] == "GET"){
             $apodo = "";
@@ -24,13 +25,7 @@
         }
 
         if($_SERVER['REQUEST_METHOD'] != "GET"){
-            $base = "setjuegos";
-            $usuario = "Jonny";
-            $pass = "Ch0k0l4t3";
-            $local = "localhost";
             $dato = strtoupper($apodo);
-
-            $mysqli = new mysqli($local,$usuario,$pass,$base);
 
             $consulta_tabla = $mysqli->query("SELECT apodo from setjuegos.usuario where UPPER(apodo)='$dato' AND pass='$password';");
             if($consulta_tabla->num_rows > 0){

@@ -15,15 +15,9 @@
 
 <body id="juegos">
   <?php
+  include("db.php");
   session_start();
   $apodo = $_SESSION['apodo'];
-
-  $base = "setjuegos";
-  $usuario = "Jonny";
-  $pass = "Ch0k0l4t3";
-  $local = "localhost";
-
-  $mysqli = new mysqli($local, $usuario, $pass, $base);
 
   $idJugador;
 

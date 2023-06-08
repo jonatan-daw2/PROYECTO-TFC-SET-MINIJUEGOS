@@ -1,17 +1,13 @@
 <?php
+    
     function gestionCompra($productoSeleccionado, $idJugador){
-        $base = "setjuegos";
-        $usuario = "Jonny";
-        $pass = "Ch0k0l4t3";
-        $local = "localhost";
-
+        ob_start();
+        include("db.php");
+        $contenido = ob_get_clean();
+        
         $precioProducto = 0;
         $monedasJugador = 0;
 
-        $mysqli = new mysqli($local, $usuario, $pass, $base);
-        if ($mysqli->connect_errno) {
-            die("Error al conectar con la base de datos: " . $mysqli->connect_error);
-        }
         //Comprobamos si ya ha hecho la compra del producto
         $consulta_compra = $mysqli->query("SELECT idCompra from setjuegos.compra where idJugador='$idJugador' AND idProducto='$productoSeleccionado';");
         if ($consulta_compra->num_rows > 0) {

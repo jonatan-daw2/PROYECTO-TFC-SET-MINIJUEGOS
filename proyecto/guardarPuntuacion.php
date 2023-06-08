@@ -1,4 +1,6 @@
 <?php
+include("db.php");
+
 $puntuacion = $_POST['puntuacion'];
 $idJuego = $_POST['idJuego'];
 $apodo = $_POST['apodo'];
@@ -11,16 +13,6 @@ $maximaPuntuacion;
 $moneda;
 
 echo $puntuacion . "" . $idJuego. "". $apodo;
-
-$base = "setjuegos";
-$usuario = "Jonny";
-$pass = "Ch0k0l4t3";
-$local = "localhost";
-
-$mysqli = new mysqli($local, $usuario, $pass, $base);
-if ($mysqli->connect_errno) {
-  die("Error al conectar con la base de datos: " . $mysqli->connect_error);
-}
 
 $consulta_preparada = $mysqli->query("SELECT idJugador from setjuegos.jugador where UPPER(nombre)='$apodo'");
 if ($consulta_preparada->num_rows > 0) {
@@ -114,7 +106,9 @@ $consulta_actualizar->execute();
 
 //monedas
 if($idJuego == 5){
-  if($puntuacion <= 5 && $puntuacion >0){
+  if($puntuacion == 0){
+    $moneda = 0;
+  }else if($puntuacion > 0  && $puntuacion <= 5){
     $moneda = 2;
   }else if($puntuacion > 5 && $puntuacion <= 15){
     $moneda = 10;
@@ -128,7 +122,7 @@ if($idJuego == 5){
 }
 
 if($idJuego == 4){
-  if($puntuacion == 0 || $puntuacion <= 5){
+  if($puntuacion >= 0 || $puntuacion <= 5){
     $moneda = 0;
   }else if($puntuacion > 5 && $puntuacion <= 10){
     $moneda = 5;

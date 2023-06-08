@@ -146,7 +146,6 @@ function reiniciarJuego() {
     avisoReinicio = true;
     setTimeout(() => {
       window.addEventListener("keyup", reinicio, { once: true });
-      window.addEventListener("touchstart", reinicio, { once: true });
     }, 1000);
   }
 }
@@ -233,4 +232,3 @@ function actualizar(tiempo) {
 requestAnimationFrame(actualizar);
 
 window.addEventListener("keyup", reinicio, { once: true });
-window.addEventListener("touchstart", reinicio, { once: true });
