@@ -19,6 +19,7 @@ function comprobar(){
     let edad = document.getElementById("edad").value;
     let apodo = document.getElementById("apodo").value;
     let contrasena = document.getElementById("password").value;
+    let contrasena2 = document.getElementById("password2").value;
 
     let contador = 0;
 
@@ -42,6 +43,14 @@ function comprobar(){
                 document.getElementById("errorP").style.display="block";
                 contador += 1;
             }
+        }
+
+        if(contrasena2 != contrasena){
+            document.getElementById("errorP2").style.display = "block";
+            document.getElementById("errorP2").textContent = "Pon la misma contraseña que arriba";
+            contador += 1;
+        }else{
+            document.getElementById("errorP2").style.display = "block";
         }
         
         if(isNaN(edad)){
@@ -94,6 +103,11 @@ function comprobar(){
             document.getElementById("errorP").style.display="block";
        }else{
            document.getElementById("errorP").style.display="none";
+       }if(contrasena2 == ""){
+            document.getElementById("errorP").textContent = "Campo vacio";
+            document.getElementById("errorP").style.display="block";
+       }else{
+            document.getElementById("errorP").style.display="none";
        }
     }
 }

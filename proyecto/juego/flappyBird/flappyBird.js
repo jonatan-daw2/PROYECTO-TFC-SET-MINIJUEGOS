@@ -57,8 +57,8 @@ function dibujar() {
     contexto_canvas.fillStyle = "#70c5ce";
     contexto_canvas.fillRect(0, 0, canvas.width, canvas.height);
     mapa.dibujarCielo();
-    mapa.dibujarSuelo();
     tuberias.dibujar();
+    mapa.dibujarSuelo();
     pajaro.dibujar();
     dibujarTextoInicio();
     dibujarPuntuacion();

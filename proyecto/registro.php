@@ -11,7 +11,9 @@
     <script src="../proyecto/js/app.js"></script>
     <link rel="stylesheet" href="../proyecto/css/registro.css">
 </head>
-
+<style>
+    
+</style>
 <body>
     <?php
     include("funcion.php");
@@ -23,14 +25,16 @@
         $edad = "";
         $apodo = "";
         $password = "";
+        $password2 = "";
     }
 
-    if (isset($_POST["nombre"]) and isset($_POST["apellidos"]) and isset($_POST["edad"]) and isset($_POST["apodo"]) and isset($_POST["password"])) {
+    if (isset($_POST["nombre"]) and isset($_POST["apellidos"]) and isset($_POST["edad"]) and isset($_POST["apodo"]) and isset($_POST["password"]) and isset($_POST["password2"])) {
         $nombre = filtrado($_POST["nombre"]);
         $apellidos = filtrado($_POST["apellidos"]);
         $edad = filtrado($_POST["edad"]);
         $apodo = filtrado($_POST["apodo"]);
         $password = md5(filtrado($_POST["password"]));
+        $password2 = (filtrado($_POST["password2"]));
     }
 
     if ($_SERVER['REQUEST_METHOD'] != "GET") {
@@ -84,6 +88,7 @@
         }
        
     }
+
     ?>
     <!--<audio src="musicaFondo.mp3" id="audioRegistro" autoplay loop></audio>-->
     <!-- Agregamos la barra de menú -->
@@ -113,24 +118,21 @@
                                                                                                                 } else {
                                                                                                                     echo "";
                                                                                                                 } ?>>
-                            <p id="errorN">
-                            <p>
+                            <p id="errorN"></p>
                         </div>
                         <div class="form-group">
                             <label for="apellidos">Apellidos</label>
                             <input type="text" class="form-control" id="apellidos" name="apellidos" required value=<?php if (!empty($apellidos)) {
                                                                                                                         echo "$apellidos";
                                                                                                                     } ?>>
-                            <p id="errorA">
-                            <p>
+                            <p id="errorA"></p>
                         </div>
                         <div class="form-group">
                             <label for="edad">Edad</label>
                             <input type="number" class="form-control" id="edad" name="edad" value=<?php if (!empty($edad)) {
                                                                                                         echo "$edad";
                                                                                                     } ?> required>
-                            <p id="errorE">
-                            <p>
+                            <p id="errorE"></p>
                         </div>
                         <div class="form-group">
                             <label for="apodo">Apodo</label>
@@ -139,16 +141,19 @@
                                                                                                             } ?>>
                             <p id="errorAp"><?php if (!empty($apodo)) {
                                                 echo "$resultado";
-                                            } ?>
-                            <p>
+                                            } ?></p>
                         </div>
                         <div class="form-group">
                             <label for="password">Contraseña</label>
                             <input type="password" class="form-control" id="password" name="password" required>
-                            <p id="errorP">
-                            <p>
+                            <p id="errorP"></p>
                         </div>
-                        <input type="button" id="enviar" class="btn btn-primary" value=Enviar></input>
+                        <div class="form-group">
+                            <label for="password2">Repite contraseña</label>
+                            <input type="password" class="form-control" id="password2" name="password2" required>
+                            <p id="errorP2"></p>
+                        </div>
+                        <input type="button" id="enviar" class="btn btn-primary" value="Enviar"></input>
                     </form>
                 </div>
             </div>
@@ -161,5 +166,7 @@
     <script src="../proyecto/bootstrap/jquery-3.2.1.slim.min.js"></script>
     <script src="../proyecto/bootstrap/bootstrap.min.js"></script>
 </body>
+
+</html>
 
 </html>

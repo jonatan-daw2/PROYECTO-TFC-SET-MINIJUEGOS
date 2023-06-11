@@ -1,6 +1,7 @@
 import { numeroDino } from './game.js';
 import { letraDino } from './game.js';
-
+import { jump } from './game.js';
+ 
 export class Jugador{
 
     animaciones = [];
@@ -102,6 +103,7 @@ export class Jugador{
 
     saltar(frame){
         if(this.salto_presionado){
+            jump.play();
             this.salto_progreso = true;
         }
 

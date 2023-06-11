@@ -180,7 +180,7 @@ if($idJuego == 1){
   }
 }
 
-$monedasNuevas;
+$monedasNuevas = $moneda;
 $monedasJugador;
 
 $consulta_monedas = $mysqli->query("SELECT monedas FROM jugador WHERE idJugador = $idJugador");
@@ -190,7 +190,7 @@ if ($consulta_monedas->num_rows > 0) {
   $monedasJugador = $row["monedas"];
 }
 
-$monedasNuevas = $moneda + $monedasJugador;
+$monedasNuevas = $monedasNuevas + $monedasJugador;
 
 $consulta_actualizar = $mysqli->prepare("UPDATE setjuegos.jugador SET monedas = ? WHERE idJugador = ?");
 $consulta_actualizar->bind_param("ii", $monedasNuevas, $idJugador);

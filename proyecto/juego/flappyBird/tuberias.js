@@ -49,31 +49,68 @@ export class Tuberias {
   dibujar() {
     for (let i = 0; i < this.posicion.length; i++) {
       let p = this.posicion[i];
-
+  
       let topYPos = p.y;
       let bottomYPos = p.y + this.h + this.hueco;
-
+  
       // Tuberia superior
-      this.contexto.drawImage(this.imagen, this.top.sX, this.top.sY, this.w, this.h, p.x, topYPos, this.w, this.h);
-
+      this.contexto.drawImage(
+        this.imagen,
+        this.top.sX,
+        this.top.sY,
+        this.w,
+        this.h,
+        p.x,
+        topYPos,
+        this.w,
+        this.h
+      );
+  
       // Tuberia inferior
-      this.contexto.drawImage(this.imagen, this.bottom.sX, this.bottom.sY, this.w, this.h, p.x, bottomYPos, this.w, this.h);
+      this.contexto.drawImage(
+        this.imagen,
+        this.bottom.sX,
+        this.bottom.sY,
+        this.w,
+        this.h,
+        p.x,
+        bottomYPos,
+        this.w,
+        this.h
+      );
+   // Dibujar tamaño del hueco
+   const huecoX = p.x;
+   const huecoY = topYPos + this.h;
+   const huecoAncho = this.w;
+   const huecoAlto = this.hueco;
 
-      // Pintar zona de paso en verde
-      // this.contexto.fillStyle = "green";
-      // this.contexto.fillRect(p.x, topYPos + this.h, this.w, this.hueco);
+   this.contexto.fillStyle = "yellow";
+   this.contexto.lineWidth = 2;
+   this.contexto.strokeRect(huecoX, huecoY, huecoAncho, huecoAlto);
 
-      // Pintar bordes de las tuberias en rojo
+      // Pintar recuadro rojo alrededor de las tuberias
+      const recuadroX = p.x;
+      const recuadroY = topYPos;
+      const recuadroAncho = this.w;
+      const recuadroAlto = this.h;
+  
+      this.contexto.strokeStyle = "red";
+      this.contexto.lineWidth = 2;
+      this.contexto.strokeRect(recuadroX, recuadroY, recuadroAncho, recuadroAlto);
+  
+     
+  
+      // // Dibujar línea azul en el borde inferior del hueco
+      // this.contexto.strokeStyle = "blue";
+      // this.contexto.lineWidth = 2;
       // this.contexto.beginPath();
-      // this.contexto.rect(p.x, topYPos, this.w, this.h);
-      // this.contexto.strokeStyle = "red";
-      // this.contexto.lineWidth = 2;
-      // this.contexto.rect(p.x, bottomYPos, this.w, this.h);
-      // this.contexto.strokeStyle = "red";
-      // this.contexto.lineWidth = 2;
+      // this.contexto.moveTo(huecoX, huecoY);
+      // this.contexto.lineTo(huecoX + huecoAncho, huecoY);
       // this.contexto.stroke();
     }
   }
+  
+  
 
 
 

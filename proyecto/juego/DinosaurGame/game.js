@@ -73,6 +73,11 @@ let puntuacion = null;
 
 let puntaje = null;
 
+//sonidos
+export const jump = document.getElementById("jump");
+let over = document.getElementById("over");
+//export const point = document.getElementById("niceJump");
+
 function crearSprites() {
   //propiedades de jugador
   const jugador_anchura_mapa = achura_jugador * escala;
@@ -195,6 +200,7 @@ function actualizar(tiempo) {
   }
 
   if (!gameOver && cactus.colision(jugador)) {
+    over.play();
     gameOver = true;
     //reiniciamos el juego
     reiniciarJuego();

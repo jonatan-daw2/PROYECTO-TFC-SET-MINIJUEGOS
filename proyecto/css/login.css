@@ -1,72 +1,70 @@
-        /* Establecemos la imagen de fondo en formato gif del mapa del comecocos */
-        body {
-            background-image: url('../imagenes/login.gif');
-            background-repeat: no-repeat;
-            background-size: 107%;
-            
-        }
-        
-        /* Cambiamos el color de la barra de menú a oscuro */
-        .navbar-dark {
-            background-color: rgba(52, 58, 64, 0.8); 
-        }
+/* Establecemos la imagen de fondo en formato gif del mapa del comecocos */
+body {
+    background-image: url('../imagenes/login.gif');
+    background-repeat: repeat;
+    background-size: 107%;
+}
 
-        .navbar-dark .navbar-brand{
-            color: lightpink;
-            transform: translate(1000%);
-        }
+/* Cambiamos el color de la barra de menú a oscuro */
+.navbar-dark {
+    background-color: rgba(52, 58, 64, 0.8); 
+}
 
-        .registro{
-            margin-left: 800px;
-        }
+.navbar-dark .navbar-brand{
+    color: lightpink;
+    transform: translate(1000%);
+}
 
-        .form-group label{
-            color: violet;
-        }
-        
+.registro{
+    margin-left: 800px;
+}
 
-        footer {
-            background-color: rgba(52, 58, 64, 0.8);
-            color: white;
-            text-align: center;
-            padding: 8px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            color: lightpink;
-        }   
+.form-group label{
+    color: violet;
+}
 
-        .bg-blue {
-            background-color: rgba(52, 58, 64, 0.8);
-            padding: 20px;
-            width: 400px;
-            border-radius: 10px;
-            margin: 0 auto;
-            position: absolute;
-            top: 10%;
-            left: 50%;
-            transform: translate(-50%,60%);
-        }
+footer {
+    background-color: rgba(52, 58, 64, 0.8);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: lightpink;
+}
 
-        footer {
-            background-color: rgba(52, 58, 64, 0.8);
-            color: white;
-            text-align: center;
-            padding: 8px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            color: lightpink;
-        } 
+.bg-blue {
+    background-color: rgba(52, 58, 64, 0.8);
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    margin: 0 auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%,60%);
+}
 
-        #errorAp,#errorP{
-            color: red;
-        }
+footer {
+    background-color: rgba(52, 58, 64, 0.8);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: lightpink;
+}
 
-        #enviar{
-            width: 90px;
-        }
-        .btn-primary{
-            background-color: purple;
-            border-color: purple;
-        }
+#errorAp,#errorP{
+    color: red;
+}
+
+#enviar{
+    width: 90px;
+}
+.btn-primary{
+    background-color: purple;
+    border-color: purple;
+}

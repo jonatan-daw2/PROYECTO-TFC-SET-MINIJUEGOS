@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../proyecto/css/login.css">
     <script src="../proyecto/js/app3.js"></script>
 </head>
+<style>
+</style>
 <body>
     <?php
         include("funcion.php");

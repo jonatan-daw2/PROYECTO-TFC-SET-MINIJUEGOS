@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="../proyecto/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../proyecto/css/tienda.css">
 </head>
+<style>
 
+</style>
 <body id="juegos">
     <?php
     include("db.php");

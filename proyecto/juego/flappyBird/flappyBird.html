@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,11 +10,27 @@
 <style>
     body {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         height: 100vh;
         margin: 0;
+        overflow: hidden;
         flex-direction: column;
+
+        user-select: none;
+        touch-action: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        outline: none;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+        background-image: url('../flappyBird/imagenes/flappyBirdFondo.webp');
+        background-size: 95%;
+        background-position: 340px;
     }
 
     canvas {
@@ -21,7 +38,7 @@
     }
 
     #highScore {
-            margin-top: 20px;
+        margin-top: 20px;
     }
 
     #highScore {
@@ -31,14 +48,16 @@
     }
 
     @font-face {
-      font-family: 'Emulogic';
-      src: url("../../juego/emulogic/emulogic.ttf");
-   }
+        font-family: 'Emulogic';
+        src: url("../../juego/emulogic/emulogic.ttf");
+    }
 </style>
+
 <body>
     <canvas id="canvasGame" width="320" height="480"></canvas>
     <div id="highScore">Puntuacion mas alta: 0</div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="flappyBird.js" defer type="module"></script>
 </body>
+
 </html>

@@ -6,7 +6,7 @@ if (isset($_GET["usu"])) {
 
 $busqueda = false;
 
-function tabla5($usu, &$busqueda){
+function tablas($usu, &$busqueda){
     $base = "setjuegos";
     $usuario = "Jonny";
     $pass = "Ch0k0l4t3";
@@ -66,6 +66,7 @@ function tabla5($usu, &$busqueda){
                                                 WHERE j.idJuego = 5
                                                 ORDER BY p.puntuacion DESC
                                                 LIMIT 10");
+                                                
             if ($consulta_tabla->num_rows > 0) {
                 echo "<table id='tabla1'>";
                 echo "<thead>";
@@ -215,13 +216,13 @@ function tabla5($usu, &$busqueda){
             color: yellow
         }
 
-        #tabla {
-            border: 1px solid black;
+        #tabla{
             background-color: rgba(52, 58, 64, 0.8);
+            border: 1px solid black;
             color: violet;
-            border-radius: 5px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-top: -220px;
+            transform: translateX(85%);
+            border-collapse: separate;
         }
 
         #tabla1{
@@ -230,6 +231,7 @@ function tabla5($usu, &$busqueda){
             color: violet;
             border-radius: 5px;
             margin-left: 50px;
+            margin-top: -3px;
             margin-right: auto;
         }
 
@@ -240,7 +242,7 @@ function tabla5($usu, &$busqueda){
             border-radius: 5px;
             margin-left: 350px;
             margin-right: auto;
-            margin-top: -315px;
+            transform: translateY(-100%);
         }
 
         #tabla3{
@@ -250,7 +252,7 @@ function tabla5($usu, &$busqueda){
             border-radius: 5px;
             margin-left: 650px;
             margin-right: auto;
-            margin-top: -310px;
+            transform: translateY(-240%);
         }
 
         #tabla4{
@@ -260,7 +262,7 @@ function tabla5($usu, &$busqueda){
             border-radius: 5px;
             margin-left: 950px;
             margin-right: auto;
-            margin-top: -320px;
+            transform: translateY(-563%);
         }
 
         #tabla5{
@@ -270,12 +272,14 @@ function tabla5($usu, &$busqueda){
             border-radius: 5px;
             margin-left: 1250px;
             margin-right: auto;
-            margin-top: -250px;
+            transform: translateY(-450%);
         }
+
+       
     </style>
 
 <body>
-    <p style="display: none"><?php tabla5($_GET["usu"], $busqueda);?></p>
+    <p style="display: none" id="resultado"><?php tablas($_GET["usu"], $busqueda);?></p>
 </body>
 </head>
 

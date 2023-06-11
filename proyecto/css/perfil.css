@@ -2,49 +2,49 @@
     overflow-x: hidden;
     background: url("../imagenes/perfil.gif");
     background-size: 84%;
-}
+  }
 
-.center {
+  .center {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+  }
 
-.card {
+  .card {
     background-color: rgba(191, 85, 236, 0.8);
     border: none;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
+  }
 
-.card-img-top {
+  .card-img-top {
     width: 100%;
     height: 200px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
-}
+  }
 
-.card-body {
+  .card-body {
     padding: 20px;
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+  }
 
-.card-title {
+  .card-title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
-}
+  }
 
-.card-text {
+  .card-text {
     font-size: 16px;
     margin-bottom: 20px;
-}
+  }
 
-.btn-primary {
+  .btn-primary {
     background-color: #fff;
     color: #BF55EC;
     border: none;
@@ -52,55 +52,97 @@
     padding: 8px 16px;
     font-size: 16px;
     cursor: pointer;
-}
+  }
 
-.card-img-top {
+  .card-img-top {
     width: 100%;
-    max-height: 100px;
+    height: 200px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
-}
+  }
 
-.play-button {
+  .play-button {
     margin-right: 15px;
     margin-top: auto;
-}
+  }
 
-.form-control {
+  .form-control {
     transform: translate(5%);
-}
+  }
 
-.btn {
+  .btn {
     transform: translate(10%);
     width: 100px;
-}
+  }
 
-#perfil {
+  #perfil {
     margin-right: 1380px;
-}
+  }
 
-#tienda {
+  #tienda {
     transform: translate(-1985%);
-}
+  }
 
-#top {
+  #top {
     transform: translate(-1650%);
-}
+  }
 
-.card {
-    margin-left: 600px;
-    margin-top: 100px;
-}
-  
-.list-group-item{
+  .card {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 50px;
+  }
+
+  .list-group-item {
     background-color: rgba(191, 85, 236, 0.8);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
+  }
 
-.card-title{
+  .card-title {
     margin-right: 15px;
-}
+  }
 
-.hidden {
+  .hidden {
     display: none;
   }
+
+  @media (min-width: 576px) {
+    .card {
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .card {
+      margin-left: 20%;
+      margin-right: 20%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .card {
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .card {
+      margin-left: 40%;
+      margin-right: 30%;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .navbar-brand {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .navbar-nav .nav-link {
+      font-size: 14px;
+    }
+  }
+  

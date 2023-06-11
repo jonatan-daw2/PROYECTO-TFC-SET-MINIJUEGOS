@@ -1,19 +1,74 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Serpiente en Canvas</title>
   <style>
     canvas {
       border: 1px solid black;
     }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      flex-direction: column;
+
+      user-select: none;
+      touch-action: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+      background-image: url("../snake/imagenes/snakeFondo.webp");
+      background-size: 100%;
+      background-position: 30px;
+    }
+
+    @font-face {
+      font-family: 'Emulogic';
+      src: url("../../juego/emulogic/emulogic.ttf");
+    }
+
+    #score {
+      font-family: 'emulogic';
+      font-size: 25px;
+    }
+
+    #highScore {
+      font-family: 'emulogic';
+      font-size: 25px;
+    }
+
+    #gameCanvas{
+      background-color: orange;
+    }
   </style>
 </head>
 
 <body>
   <canvas id="gameCanvas" width="400" height="400"></canvas>
-  <div id="score">Puntuacion: 0</div>
-  <div id="highScore">Puntuacion mas alta: 0</div>
+  <div id="score">Score: 0</div>
+  <div id="highScore">High Score: 0</div>
+  <audio id="move">
+    <source src="./sonidos/move.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="eat">
+    <source src="./sonidos/food.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="over">
+    <source src="./sonidos/gameover.mp3" type="audio/mpeg">
+  </audio>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="snake.js"></script>
 </body>
+
 </html>

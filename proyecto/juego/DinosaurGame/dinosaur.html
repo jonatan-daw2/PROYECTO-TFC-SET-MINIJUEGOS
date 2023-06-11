@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Dinosaur Game</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <style>
-        *{
+        * {
             padding: 0px;
             margin: 0px;
         }
-        body{
+
+        canvas {
+            border: 0.1px solid grey;
+            /*width: 1534px;*/
+            /*height: 400px;*/
+        }
+
+        body {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -27,11 +35,10 @@
             user-select: none;
             outline: none;
             -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-        }
-        canvas{
-            border: 0.1px solid grey;
-            /*width: 1534px;*/
-            /*height: 400px;*/
+
+            background-image: url('../DinosaurGame/imagenes/googleDinosaurFondo.webp');
+            background-size: 95%;
+            background-position: 340px;
         }
 
         @font-face {
@@ -40,9 +47,20 @@
         }
     </style>
 </head>
+
 <body>
+    <audio id="over">
+        <source src="./sonidos/die.wav" type="audio/wav">
+    </audio>
+    <audio id="jump">
+        <source src="./sonidos/jump.wav" type="audio/wav">
+    </audio>
+   <!-- <audio id="niceJump">
+        <source src="./sonidos/point.wav" type="audio/wav">
+    </audio> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src='game.js' defer type="module"></script>
     <canvas id="mapa"></canvas>
 </body>
+
 </html>

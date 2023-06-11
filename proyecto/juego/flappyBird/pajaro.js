@@ -47,7 +47,8 @@ export class Bird {
         }else{
             this.imagenSuelo.src = "imagenes/juego.png";
         }
-                //objeto suelo
+        
+        //objeto suelo
         this.suelo = new Imagen(this.contexto,this.imagenSuelo);
 
         //estado del juego
@@ -62,18 +63,35 @@ export class Bird {
         let pajaro = this.animaciones[this.frame];
         this.contexto.save();
         this.contexto.translate(this.x, this.y);
+      
+        // Dibujar el espacio ocupado por la imagen sin aplicar rotación
+        const espacioImagenX = (this.w - 70) / 2;
+        const espacioImagenY = (this.h - 49) / 2;
+        const espacioImagenAncho = this.w;
+        const espacioImagenAlto = this.h;
+      
+        this.contexto.strokeStyle = "red";
+        this.contexto.lineWidth = 2;
+        this.contexto.strokeRect(espacioImagenX, espacioImagenY, espacioImagenAncho, espacioImagenAlto);
+      
+        // Dibujar el pájaro con rotación
         this.contexto.rotate(this.rotacion);
-        this.contexto.drawImage(this.imagen, pajaro.sX, pajaro.sY, this.w, this.h, -this.w/2, -this.h/2, this.w, this.h);
-
-        // Dibujar el radio del pájaro
-        // this.contexto.beginPath();
-        // this.contexto.arc(0, 0, this.radio, 0, Math.PI * 2);
-        // this.contexto.strokeStyle = "red";
-        // this.contexto.lineWidth = 2;
-        // this.contexto.stroke();
-
+        this.contexto.drawImage(this.imagen, pajaro.sX, pajaro.sY, this.w, this.h, -this.w / 2, -this.h / 2, this.w, this.h);
+      
         this.contexto.restore();
-    }    
+      
+        // Dibujar el recuadro verde alrededor del pájaro
+        const recuadroX = this.x - this.radio;
+        const recuadroY = this.y - this.radio;
+        const recuadroAncho = this.radio * 2;
+        const recuadroAlto = this.radio * 2;
+      
+        this.contexto.strokeStyle = "green";
+        this.contexto.lineWidth = 2;
+        this.contexto.strokeRect(recuadroX, recuadroY, recuadroAncho, recuadroAlto);
+      }
+      
+       
 
     //al ahcer click "volar"
     aleteo(){

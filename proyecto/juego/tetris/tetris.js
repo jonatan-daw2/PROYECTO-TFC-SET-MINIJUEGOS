@@ -45,6 +45,8 @@ let contador_caida = 0;
 let actualizacion = null;
 let gameOver = false;
 
+let musica = document.getElementById("music");
+musica.volume = 0.1;
 function actualizar(tiempo = 0){
     //tiempo recibido en el momento actual - el ultimo tiempo recibido
     const tiempo_aux = tiempo - ultimoTiempo;
@@ -253,13 +255,10 @@ function playerReset(){
     jugador.posicion.y = 0;
     if(colisiones(tabla,jugador)){
         tabla.forEach(fila => fila.fill(0));
-        jugador.puntuacion = 0;
-        jugador.nivel = 0;
-        jugador.lineas = 0;
-        actualizarPuntuacion();
         //alert("fin del juego");
         // cancelAnimationFrame(actualizacion);
         puntuacionPartida = jugador.puntuacion;
+        //alert(puntuacionPartida);
         $.post('../../guardarPuntuacion.php', {
             puntuacion: puntuacionPartida,
             apodo: apodo,
@@ -268,6 +267,10 @@ function playerReset(){
             console.log("Información: " + datos);
             console.log("Estado de la petición: " + estadoPeticion);
         });
+        jugador.puntuacion = 0;
+        jugador.nivel = 0;
+        jugador.lineas = 0;
+        actualizarPuntuacion();
         gameOver = true;
 
         contexto_canvas.fillStyle = 'black';

@@ -116,11 +116,16 @@ if (num == 1 || num == 2 || num == 3) {
     appleImage.src = "imagenes/appleDefault.png";
 }
 
+// Tamaño de los recuadros
+var squareSize = 20;
+
+// Colores de los recuadros
+var lightOrange = "#FFC77F";
+var darkOrange = "#FFA64C";
 
 var gameStart = "start";
 var gameState = "running";
 var gameOverText = "GAME OVER";
-var gameStartText = "Pulsa el espacio para empezar";
 
 //puntuacion
 const scoreElement = document.getElementById("score");
@@ -147,23 +152,32 @@ var direction = "right";
 // Contador de longitud de la serpiente
 var snakeLength = snakeSegments.length;
 
+//Sonidos
+let eatSound = document.getElementById("eat");
+let turnSound = document.getElementById("move");
+let overSound = document.getElementById("over");
+
 // Evento de teclado para cambiar la dirección
 document.addEventListener("keydown", function (event) {
     var key = event.keyCode;
     if (key === 37 && direction !== "right") {
         direction = "left";
+        turnSound.play();
     } else if (key === 38 && direction !== "down") {
         direction = "up";
+        turnSound.play();
     } else if (key === 39 && direction !== "left") {
         direction = "right";
+        turnSound.play();
     } else if (key === 40 && direction !== "up") {
         direction = "down";
+        turnSound.play();
     } else if (key === 32 && gameState === "game over") { // Spacebar key code is 32
         if (score > highScore) {
             highScore = score;
             localStorage.setItem("highScore", highScore);
         }
-        drawScore();
+        drawScore("Emulogic", "25px");
         resetGame();
     } else if (key === 32 && gameStart === "start") {
         gameStart = "finish";
@@ -179,19 +193,22 @@ function checkWinCondition() {
 }
 
 //dibujar puntuacion
-function drawScore() {
-    scoreElement.textContent = "Puntuacion: " + score;
-    highScoreElement.textContent = "Puntuacion mas alta: " + highScore;
+function drawScore(fuente, tamanio) {
+    scoreElement.style.font = tamanio + " " + fuente;
+    scoreElement.textContent = "Score: " + score;
+
+    highScoreElement.style.font = tamanio + " " + fuente;
+    highScoreElement.textContent = "High Score: " + highScore;
 }
 
 // Muestra el mensaje de inicio en el centro del canvas
 function showGameInitMessage() {
     var centerX = canvas.width / 2;
     var centerY = canvas.height / 2;
-    context.font = "25px Arial";
+    context.font = "25px emulogic";
     context.fillStyle = "red";
     context.textAlign = "center";
-    context.fillText(gameStartText, centerX, centerY);
+    context.fillText("Space to start", centerX, centerY);
 }
 
 // Function to reset the game
@@ -217,7 +234,7 @@ function resetGame() {
     score = 0;
 
     //imprimimos el valor de nuevo
-    drawScore();
+    drawScore("Emulogic", "25px");
 
     // Restart the game loop
     gameLoop();
@@ -284,15 +301,16 @@ function gameLoop() {
         //Verificamos si la cabeza choca consigo misma
         for (var i = 1; i < snakeSegments.length; i++) {
             if (head.x === snakeSegments[i].x && head.y === snakeSegments[i].y) {
+                overSound = document.getElementById("over").play();
                 gameState = "game over";
                 var centerX = canvas.width / 2;
                 var centerY = canvas.height / 2;
-                context.font = "30px Arial";
+                context.font = "25px emulogic";
                 context.fillStyle = "red";
                 context.textAlign = "center";
                 context.fillText(gameOverText, centerX, centerY);
                 var restartTextY = centerY + 50;
-                context.font = "20px Arial";
+                context.font = "25px emulogic";
                 context.fillText("Pulsa espacio", centerX, restartTextY);
                 $.post('../../guardarPuntuacion.php', {
                     puntuacion: score,
@@ -314,10 +332,11 @@ function gameLoop() {
             head.y < 0 ||
             head.y >= canvas.height / imageSize
         ) {
+            overSound = document.getElementById("over").play();
             gameState = "game over";
             var centerX = canvas.width / 2;
             var centerY = canvas.height / 2;
-            context.font = "30px Arial";
+            context.font = "25px emulogic";
             context.fillStyle = "red";
             context.textAlign = "center";
             context.fillText(gameOverText, centerX, centerY);
@@ -332,8 +351,8 @@ function gameLoop() {
             });
 
             var restartTextY = centerY + 50;
-            context.font = "20px Arial";
-            context.fillText("Pulsa espacio", centerX, restartTextY);
+            context.font = "25px emulogic";
+            context.fillText("Press Space", centerX, restartTextY);
             return;
         }
 
@@ -346,7 +365,8 @@ function gameLoop() {
             apple.x = Math.floor(Math.random() * canvas.width / imageSize);
             apple.y = Math.floor(Math.random() * canvas.height / imageSize);
             score++;
-            drawScore();
+            drawScore("Emulogic", "25px");
+            eatSound.play();
             // Incrementamos la longitud de la serpiente
             snakeLength++;
             // Verificamos si se ha alcanzado la condición de victoria
@@ -354,13 +374,13 @@ function gameLoop() {
                 gameState = "game over";
                 var centerX = canvas.width / 2;
                 var centerY = canvas.height / 2;
-                context.font = "30px Arial";
+                context.font = "25px emulogic";
                 context.fillStyle = "green";
                 context.textAlign = "center";
                 context.fillText("¡Has ganado!", centerX, centerY);
 
                 var restartTextY = centerY + 50;
-                context.font = "20px Arial";
+                context.font = "25px emulogic";
                 context.fillText("Pulsa espacio para reiniciar", centerX, restartTextY);
                 return;
             }
@@ -370,8 +390,7 @@ function gameLoop() {
         }
 
         // Dibujamos el fondo del canvas
-        context.fillStyle = "white";
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        drawBackground();
 
         // Dibujamos la serpiente
         for (var i = 0; i < snakeSegments.length; i++) {
@@ -435,7 +454,22 @@ function gameLoop() {
         //     gameState = "game over";
         //   }
     }
-   
+    
+    function drawBackground() {
+        for (var y = 0; y < canvas.height; y += squareSize) {
+          for (var x = 0; x < canvas.width; x += squareSize) {
+            var color;
+            if ((x / squareSize + y / squareSize) % 2 === 0) {
+              color = lightOrange;
+            } else {
+              color = darkOrange;
+            }
+            context.fillStyle = color;
+            context.fillRect(x, y, squareSize, squareSize);
+          }
+        }
+      }
+
     setTimeout(gameLoop, 95);
 }
 

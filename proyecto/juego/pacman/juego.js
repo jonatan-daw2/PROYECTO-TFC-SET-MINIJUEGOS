@@ -1,3 +1,4 @@
+
 const urlParams = new URLSearchParams(window.location.search);
 const apodo = urlParams.get('apodo');
 const num = urlParams.get('num');
@@ -102,10 +103,22 @@ let objetivoFantasmas = [
     esquinaInferiorIzquierda,
     esquinaInferiorDerecha
   ];*/
+//inicio
 let spacePressed = false;
+//sonidos
+let over = document.getElementById("sound2");
+let start = document.getElementById("sound3");
+start.volume = 0.1;
+over.volume = 0.1;
+let startGame = false;
+
+sound.addEventListener("ended", function() {
+    startGame = true;
+});
+//start.play();
 
 document.addEventListener("keydown", function (event) {
-    if (event.code === "Space") {
+    if (event.code === "Space" && !startGame) {
         spacePressed = true;
         loop(); // Iniciar el juego cuando se presione la tecla de espacio
     }
@@ -117,16 +130,17 @@ function creacionLienzo(x, y, anchura, altura, color) {
 }
 
 function loop() {
-    if (!spacePressed) {
-        dibujar();
+    if (spacePressed == false) {
+        dibujarMapa();
         contexto_canvas.font = "20px emulogic";
         contexto_canvas.fillStyle = "yellow";
         contexto_canvas.fillText("START!!", 130, 200);
         requestAnimationFrame(loop);
         return; // Salir del bucle si la tecla de espacio no ha sido presionada
+    }else{
+        dibujar();
+        actualizar();
     }
-    dibujar();
-    actualizar();
     console.log(mapa);
 }
 
@@ -141,7 +155,7 @@ function actualizar() {
     if (comecocos.colisionesFantasmas() == true) {
         reiniciarJuego();
     }
-    if (puntuacion >= 419) {
+    if (puntuacion == 419) {
         clearInterval(intervalo);
         dibujarVictoria();
     }
@@ -152,6 +166,7 @@ function reiniciarJuego() {
     crearFantasmas();
     vidas--;
     if (vidas == 0) {
+        over.play();
         finDelJuego();
         $.post('../../guardarPuntuacion.php', {
             puntuacion: puntuacion,
@@ -202,6 +217,17 @@ function dibujar() {
     dibujarPuntuacion();
     dibujarFantasmas();
     dibujarVidas();
+}
+
+function dibujarMapa(){
+    creacionLienzo(0, 0, canvas.width, canvas.height, "black");
+    dibujarIntervalos();
+    dibujoCocos();
+    dibujarPuntuacion();
+    dibujarVidas();
+    dibujarFantasmas();
+    comecocos.dibujar();
+    
 }
 
 function dibujoCocos() {

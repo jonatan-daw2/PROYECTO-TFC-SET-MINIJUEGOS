@@ -1,4 +1,6 @@
 class Comecocos{
+    eat = document.getElementById('sound');
+     
     constructor(x, y, anchura, altura, velocidad){
         this.x = x;
         this.y = y;
@@ -9,6 +11,7 @@ class Comecocos{
         this.proximaDirec = this.direccion;
         this.frame = 1;
         this.maxframe = 7;
+        this.eat.volume = 0.1
         //apuntar aqui quizas
         setInterval(() => {this.cambioAnimacion();}, 100);
     }
@@ -22,32 +25,24 @@ class Comecocos{
     }
 
     comer(){
-        let poder = false;
-        const audioComer = new Audio("../../juego/waka-waka.mp3");
+        // document.getElementById('sound').play();
         for(let i=0; i<mapa.length; i++){
             for(let j=0; j<mapa[0].length; j++){
                 if(mapa[i][j] == 2 && this.getPosicionX() == j && this.getPosicionY() == i){
                     mapa[i][j] = 3;
                     puntuacion++;
                     
+                    this.eat.play();
+                    
                     if(i==3 && j==19 || i==3 && j==1 || i==17 && j==1 || i==17 && j==19){
                         puntuacion += 50;
-                        poder = true;
+                        //poder = true;
                         //alert("Entro");
                         /*NO FUNCIONA*/
                         /*setTimeout(() => {
                             this.velocidad = 5;
                         }, 5000);*/
                     }
-                    /*if(puntuacion==1 || puntuacion==0){
-                        audioComer.play();
-                        audioComer.muted;
-                    }*/
-                    if(puntuacion%2){
-                        audioComer.play();
-                        audioComer.muted;
-                    }
-                    return poder;
                 }
             }
         }

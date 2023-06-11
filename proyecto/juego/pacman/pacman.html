@@ -1,27 +1,63 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pacman</title>
- </head>
- <style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Pacman</title>
+</head>
+<style>
    @font-face {
       font-family: 'Emulogic';
       src: url("../../juego/emulogic/emulogic.ttf");
    }
- </style>
- <body style="margin: 0px;" background="black" >
-    <canvas id="canvas" width="420" height="500"></canvas>
-    <div style="display: none">
-        <img id="animacion" src="comecocos.gif" alt="">
-        <img id="fantasmas" src="fantasmas.png" alt="">
-        <img id="fantasmasVulnerables" src="fantasmas-invulnerable.png" alt="">
-    </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="fantasmas.js"></script>
-    <script src="comecocos.js"></script>
-    <script src="juego.js"></script>
- </body>
- </html>
+
+   body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      flex-direction: column;
+
+      user-select: none;
+      touch-action: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      outline: none;
+      -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+      background-image: url('../pacman/comecocosFondo.jpg');
+      background-size: 95%;
+      background-position: 340px;
+   }
+</style>
+<body style="margin: 0px;" background="black">
+   <audio id="sound2">
+      <source src="./pacman-5.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="sound">
+      <source src="./wakawaka2.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="sound3" autoplay>
+      <source src="./pacman-song.mp3" type="audio/mpeg">
+    </audio>
+   <canvas id="canvas" width="420" height="500"></canvas>
+   <div style="display: none">
+      <img id="animacion" src="comecocos.gif" alt="">
+      <img id="fantasmas" src="fantasmas.png" alt="">
+      <img id="fantasmasVulnerables" src="fantasmas-invulnerable.png" alt="">
+   </div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script src="fantasmas.js"></script>
+   <script src="comecocos.js"></script>
+   <script src="juego.js"></script>
+</body>
+
+</html>
